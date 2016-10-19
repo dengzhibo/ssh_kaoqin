@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName"
+>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <!-- 指定连接数据库的驱动 -->
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <!-- 指定连接数据库的URL -->
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/kaoqin?characterEncoding=utf-8"></property>
+        <!-- 指定连接数据库的用户名 -->
+        <property name="user" value="root"/>
+        <!-- 指定连接数据库的密码 -->
+        <property name="password" value="dengzhibo"/>
+        <!-- 指定连接数据库连接池的最大连接数 -->
+        <property name="maxPoolSize" value="20"/>
+        <!-- 指定连接数据库连接池的最小连接数 -->
+        <property name="minPoolSize" value="1"/>
+        <!-- 指定连接数据库连接池的初始化连接数 -->
+        <property name="initialPoolSize" value="5"/>
+        <!-- 指定连接数据库连接池的连接的最大空闲时间 -->
+        <property name="maxIdleTime" value="20"/>
+    </bean>
+    <!--会话工厂-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <!--数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--映射文件列表-->
+        <property name="mappingResources">
+            <list>
+                <value>/com/po/User.hbm.xml</value>
+                <value>/com/po/Tclass.hbm.xml</value>
+                <value>/com/po/Course.hbm.xml</value>
+            </list>
+        </property>
+        <!--hibernate其他属性-->
+        <property name="hibernateProperties">
+            <props>
+                <!--方言-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <!--是否显示sql-->
+                <prop key="hibernate.show_sql">true</prop>
+                <!--是否通过映射文件创建数据库中的表-->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--批量处理大小-->
+                <prop key="hibernate.jdbc.batch_size">20</prop>
+            </props>
+        </property>
+    </bean>
+     <!--事务管理-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <!--会话工厂-->
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="userService" class="com.service.UserServiceImpl"></bean>
+    <bean id="userDao" class="com.dao.UserDaoImpl"></bean>
+    <bean id="user" class="com.po.User"></bean>
+    <!--拦截器-->
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <!--  事务拦截器bean需要依赖注入一个事务管理器 -->
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <!--  下面定义事务传播属性-->
+            <props>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+    <!--定义装配器 配置对谁使用拦截器-->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <!--  指定对满足哪些bean name的bean自动生成业务代理 -->
+        <property name="beanNames">
+            <!--  下面是所有需要自动创建事务代理的bean-->
+            <list>
+                <value>*Service</value>
+            </list>
+            <!--  此处可增加其他需要自动创建事务代理的bean-->
+        </property>
+        <!--  下面定义BeanNameAutoProxyCreator所需的事务拦截器-->
+        <property name="interceptorNames">
+            <list>
+                <!-- 此处可增加其他新的Interceptor -->
+                <value>transactionInterceptor</value>
+            </list>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="struts2-sitemeth-json">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../libs/struts2-sitemeth-json" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../../libs/struts2-sitemeth-json" recursive="false" />
+  </library>
+</component>

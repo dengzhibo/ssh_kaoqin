@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web" relative="/" />
+        </webroots>
+      </configuration>
+      <facet type="Struts2" name="Struts 2">
+        <configuration>
+          <fileset id="s2fileset" name="Default File Set " removed="false">
+            <file>file://$MODULE_DIR$/src/struts.xml</file>
+            <file>jar://$USER_HOME$/桌面/ssh_lib/struts2-sitemeth-json/struts2-sitemesh-plugin-2.3.30.jar!/struts-plugin.xml</file>
+            <file>jar://$USER_HOME$/桌面/ssh_lib/struts2-sitemeth-json/struts2-json-plugin-2.3.30.jar!/struts-plugin.xml</file>
+            <file>jar://$USER_HOME$/桌面/ssh_lib/struts2-sitemeth-json/struts2-spring-plugin-2.3.30.jar!/struts-plugin.xml</file>
+            <file>jar://$USER_HOME$/桌面/ssh_lib/struts2-sitemeth-json/struts2-core-2.3.30.jar!/struts-default.xml</file>
+          </fileset>
+          <propertiesKeys disabled="false" />
+        </configuration>
+      </facet>
+    </facet>
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map>
+          <unit-entry name="a.xml" value="0fd09d0b-67fa-428e-80e8-65b5654dcd97" />
+        </datasource-map>
+        <naming-strategy-map />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.70" level="application_server_libraries" />
+    <orderEntry type="library" name="spring" level="project" />
+    <orderEntry type="library" name="struts2-sitemeth-json" level="project" />
+    <orderEntry type="library" name="hibernate" level="project" />
+    <orderEntry type="library" name="c3p0" level="project" />
+  </component>
+</module>

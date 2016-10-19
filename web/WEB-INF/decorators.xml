@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+    <excludes>
+        <pattern>/yzm.zhq</pattern>
+    </excludes>
+    <decorator name="main" page="main.jsp">
+        <pattern>/WEB-INF/jsp/index.jsp</pattern>
+    </decorator>
+    <decorator name="admin" page="admin.jsp">
+        <pattern>/WEB-INF/admin/*</pattern>
+    </decorator>
+    <decorator name="user" page="user.jsp">
+        <pattern>/WEB-INF/user/*</pattern>
+    </decorator>
+</decorators>

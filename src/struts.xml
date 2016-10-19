@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="zhq" extends="json-default">
+        <default-action-ref name="index"></default-action-ref>
+        <global-results>
+            <result name="err">/WEB-INF/admin/error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="err"></exception-mapping>
+        </global-exception-mappings>
+        <action name="login" class="com.action.Login">
+            <result type="redirectAction">admin_user_manager</result>
+            <result name="userview" type="redirectAction">user_manager</result>
+            <result name="input">/WEB-INF/jsp/index.jsp</result>
+        </action>
+        <action name="index">
+            <result>/WEB-INF/jsp/index.jsp</result>
+        </action>
+        <action name="admin_user_manager" class="com.action.AdminUserManager">
+            <result>/WEB-INF/admin/admin_user_manager.jsp</result>
+        </action>
+        <action name="admin_go_adduser">
+            <result>/WEB-INF/admin/admin_user_add.jsp</result>
+        </action>
+        <action name="admin_go_deleteuser" class="com.action.GotoPromptDeleteUser">
+            <result>/WEB-INF/admin/admin_user_prompt.jsp</result>
+        </action>
+        <action name="admin_go_updateuser" class="com.action.GotoUpdateUser">
+            <result>/WEB-INF/admin/admin_user_update.jsp</result>
+        </action>
+        <action name="admin_add_user" class="com.action.AdminUserAdd">
+            <result name="input">/WEB-INF/admin/admin_user_add.jsp</result>
+            <result>/WEB-INF/admin/admin_user_add_success.jsp</result>
+        </action>
+        <action name="admin_delete_user" class="com.action.AdminUserDelete">
+            <result name="input">/WEB-INF/admin/admin_user_prompt.jsp</result>
+            <result name="back" type="redirectAction">admin_user_manager</result>
+            <result>/WEB-INF/admin/admin_user_delete_success.jsp</result>
+        </action>
+        <action name="admin_update_user" class="com.action.AdminUserUpdate">
+            <result name="input">/WEB-INF/admin/admin_user_update.jsp</result>
+            <result>/WEB-INF/admin/admin_user_update_success.jsp</result>
+        </action>
+        <action name="checkusername" class="com.action.CheckUsername">
+            <result type="json"></result>
+        </action>
+        <action name="user_manager" class="com.action.UserManager">
+            <result>/WEB-INF/user/user_manager.jsp</result>
+        </action>
+    </package>
+</struts>

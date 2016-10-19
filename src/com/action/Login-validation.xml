@@ -1,0 +1,44 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <field name="username">
+        <field-validator type="requiredstring">
+            <!--剔除空格-->
+            <param name="trim">true</param>
+            <message>帐号不能为空！</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <param name="maxLength">12</param>
+            <param name="minLength">5</param>
+            <message>帐号必须是5-12位的字符！</message>
+        </field-validator>
+    </field>
+
+    <field name="password">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>密码不能为空！</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <param name="maxLength">12</param>
+            <param name="minLength">6</param>
+            <message>密码必须是6-12位的字符！</message>
+        </field-validator>
+    </field>
+    <field name="yzm">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>验证码不能为空！</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <param name="maxLength">4</param>
+            <param name="minLength">4</param>
+            <message>验证码必须是4位的字符！</message>
+        </field-validator>
+    </field>
+</validators>
